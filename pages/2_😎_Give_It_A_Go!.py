@@ -4,6 +4,7 @@ import numpy as np
 from datetime import datetime
 
 from textblob import TextBlob, Word
+import nltk
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
@@ -16,6 +17,7 @@ from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score
 import scipy
 
+nltk.download('stopwords')
 
 st.title('Article Clap Analysis')
 st.subheader('Find out details about your medium article')
