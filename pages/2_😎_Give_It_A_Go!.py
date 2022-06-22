@@ -16,8 +16,6 @@ from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score
 import scipy
 
-from PIL import Image
-
 
 st.title('Article Clap Analysis')
 st.subheader('Find out details about your medium article')
@@ -28,8 +26,8 @@ def load_data_for_model():
     df = pd.read_csv(
         'df_final_no_numbers.csv')
 
-    df.subtitle = df.subtitle.apply(lambda x: 0 if x == '-' else 1)
-    df.subtitle = df.subtitle.apply(str)
+    df['subtitle'] = df['subtitle'].apply(lambda x: 0 if x == '-' else 1)
+    df['subtitle'] = df['subtitle'].apply(str)
     df = df[(df['publication'] != 'personal-growth')
             & (df['publication'] != 'uxplanet')]
     df.reset_index(drop=True, inplace=True)
