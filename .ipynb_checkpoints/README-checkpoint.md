@@ -11,4 +11,3 @@
 </li>
 
 ![Alt text](assets/model.jpeg?raw=true "Model Interface")
-![Alt text](assets/recommendation.jpeg?raw=true "Model Interface")
