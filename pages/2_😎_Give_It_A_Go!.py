@@ -368,23 +368,24 @@ def load_data_for_tfidf():
 
 tfidf_df = load_data_for_tfidf()
 
+check = st.checkbox('Load Recommendations')
+if check:
+    with st.expander("See Article Suggestions"):
+        st.write('Here we go:')
+        # create a tf-idf vectorizer object
+        tfidf = TfidfVectorizer(max_features=60000)
+        X = tfidf.fit_transform(tfidf_df['text'])
 
-with st.expander("See Article Suggestions"):
-    st.write('Here we go:')
-    # create a tf-idf vectorizer object
-    tfidf = TfidfVectorizer(max_features=60000)
-    X = tfidf.fit_transform(tfidf_df['text'])
+        title2idx = pd.Series(tfidf_df.index, index=tfidf_df['title'])
 
-    title2idx = pd.Series(tfidf_df.index, index=tfidf_df['title'])
+        query = tfidf.transform(user_df.text)
 
-    query = tfidf.transform(user_df.text)
+        scores = cosine_similarity(query, X)
+        scores = scores.flatten()
 
-    scores = cosine_similarity(query, X)
-    scores = scores.flatten()
+        recommended_idx = (-scores).argsort()[1:6]
 
-    recommended_idx = (-scores).argsort()[1:6]
-
-    with st.container():
-        for i, index in enumerate(recommended_idx):
-            st.write(i+1, '-', tfidf_df['title'].iloc[index])
-            st.write(tfidf_df['story_url'].iloc[index])
+        with st.container():
+            for i, index in enumerate(recommended_idx):
+                st.write(i+1, '-', tfidf_df['title'].iloc[index])
+                st.write(tfidf_df['story_url'].iloc[index])
