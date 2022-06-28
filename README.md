@@ -10,4 +10,12 @@
 
 </li>
 
-![Alt text](assets/model.jpeg?raw=true "Model Interface") | ![Alt text](assets/recommendations.jpeg?raw=true "Model Interface")
+<h3>Demo Web Site</h3>
+
+---
+
+![Alt text](assets/model.jpeg?raw=true "Model Interface")
+
+</br>
+
+![Alt text](assets/recommendations.jpeg?raw=true "Recommendations")
